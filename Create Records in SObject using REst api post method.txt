@@ -2,6 +2,7 @@
 global with sharing class createLeads {
     @HttpPost 
     global static void doPost(leadWrapper lwrapp) {
+        system.debug('hello');
         Lead ld = new Lead();
         system.debug('wraoer '+lwrapp);
         ld.LastName= lwrapp.company;
