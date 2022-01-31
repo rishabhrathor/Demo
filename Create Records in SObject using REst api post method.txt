@@ -1,0 +1,62 @@
+@RestResource(urlMapping='/api/salesfeed/*')
+
+global with sharing class createLeads {
+    @HttpPost 
+    global static void doPost(leadWrapper lwrapp) {
+        Lead ld = new Lead();
+        system.debug('wraoer '+lwrapp);
+        ld.LastName= lwrapp.company;
+        ld.Company = lwrapp.company;
+        ld.City = lwrapp.city;
+        ld.PostalCode= lwrapp.zipcode;
+        //ld.Description = lwrapp.description;
+        ld.Phone = lwrapp.phonenumber;
+        ld.Website = lwrapp.website;
+        ld.Email = lwrapp.email;
+        ld.Aantal_Werknemers_1__c = lwrapp.fte;
+        ld.coc_number__c = lwrapp.cocnumber;
+        ld.sbi_code__c = lwrapp.sbicode;
+        ld.sbidescription__c = lwrapp.sbidescription;
+        insert ld;
+        //return ld.id;
+        
+    }
+    global class leadWrapper{
+        string address;
+        string city;
+        string company;
+        string description;
+        string phonenumber;
+        string website;
+        string zipcode;
+        string email;
+        string fte;
+        string cocnumber;
+        string sbicode;
+        String sbidescription;
+        
+        
+    }
+    
+    
+}
+
+
+In Workbench :-
+Url :- /services/apexrest/api/salesfeed
+Body:-
+		
+		{"lwrapp":
+{"city":"test city",
+"company":"t9l",
+"phonenumber":"123",
+"website":"testing web",
+"zipcode":"02341",
+"email":"test@test.com",
+"fte": "fte",
+"cocnumber":"2345",
+"sbicode":"65780",
+"sbidescription":"testing..."
+}
+
+}
